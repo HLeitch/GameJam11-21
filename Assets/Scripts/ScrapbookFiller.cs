@@ -85,16 +85,18 @@ public class ScrapbookFiller : MonoBehaviour
         front = Instantiate(mommyStamp.imageStamps[b], stampLocations[currentStamp], Quaternion.Euler(0, 0, randyRotate));
         front.transform.localScale = new Vector2(0.6f, 0.6f);
         front.transform.parent = gameObject.transform;
+    }
 
+    public void UpdateScore(int score)
+    {
         newText = Instantiate(newText, textLocations[currentStamp], Quaternion.identity);
-        int randyScore = Random.Range(1, 101);
-        newText.text = randyScore.ToString();
+        newText.text = score.ToString();
         newText.transform.parent = gameObject.transform;
-        if (randyScore >= 75)
+        if (score >= 75)
             newText.color = new Color32(0, 63, 0, 255);
-        else if (randyScore < 75 && randyScore >= 50)
+        else if (score < 75 && score >= 50)
             newText.color = new Color32(207, 169, 0, 255);
-        else if (randyScore < 50)
+        else if (score < 50)
             newText.color = Color.red;
         currentStamp++;
     }
