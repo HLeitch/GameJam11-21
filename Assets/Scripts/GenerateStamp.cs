@@ -7,10 +7,12 @@ public class GenerateStamp : MonoBehaviour
     CreateStamp mommyStamp;
     GameObject back;
     GameObject front;
+    ScrapbookFiller myScrapbook;
     // Start is called before the first frame update
     void Start()
     {
         mommyStamp = FindObjectOfType<CreateStamp>();
+        myScrapbook = FindObjectOfType<ScrapbookFiller>();
         GenerateImages();
     }
 
