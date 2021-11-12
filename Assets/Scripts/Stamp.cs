@@ -31,6 +31,7 @@ public class Stamp : MonoBehaviour
     //Moves the top left corner of the stamp
     public void MoveEdge(Vector3 newPosition)
     {
+        //closer to center of screen than can mesh
         if((originalCornerPosition-Vector3.zero).magnitude > (newPosition-Vector3.zero).magnitude)
                 {
             DeformRightCorner(newPosition);
