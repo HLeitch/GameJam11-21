@@ -33,8 +33,6 @@ public class Peelable : MonoBehaviour
         worldMousePos = new Vector3(worldMousePos.x, worldMousePos.y, 0f);
         _mCollider.gameObject.transform.position = worldMousePos;
 
-        Debug.Log("NewPeelable position" + _mCollider.gameObject.transform.position.ToString());
-
         _mStamp.MoveEdge(worldMousePos);
     }
 

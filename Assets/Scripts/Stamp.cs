@@ -25,6 +25,7 @@ public class Stamp : MonoBehaviour
     //Moves the top left corner of the stamp
     public void MoveEdge(Vector3 newPosition)
     {
-        _Image.DeformLeftCorner(newPosition);
+        //_Image.DeformLeftCorner(newPosition);
+        gameObject.transform.position = newPosition;
     }    
 }
