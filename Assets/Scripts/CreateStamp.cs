@@ -30,7 +30,7 @@ public class CreateStamp : MonoBehaviour
         }
     }
 
-    void SpawnStamp()
+    public void SpawnStamp()
     {
         var newStamp = Instantiate(stamp, spawnPoint, Quaternion.identity);
     }

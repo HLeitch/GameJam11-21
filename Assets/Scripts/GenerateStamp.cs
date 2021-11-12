@@ -11,12 +11,16 @@ public class GenerateStamp : MonoBehaviour
     SpriteCombine myCombiner;
     Sprite mergedImage;
     public Material newMat;
+    public GameObject PhysicalStampPrefab;
+
+
     // Start is called before the first frame update
     void Start()
     {
         mommyStamp = FindObjectOfType<CreateStamp>();
         myScrapbook = FindObjectOfType<ScrapbookFiller>();
         myCombiner = FindObjectOfType<SpriteCombine>();
+
         GenerateImages();
     }
 
@@ -34,6 +38,8 @@ public class GenerateStamp : MonoBehaviour
         mergedImage = myCombiner.Merge(mommyStamp.backingSprites[randy1], mommyStamp.imageSprites[randy2]);
         newMat.SetTexture("_MainTex",mergedImage.texture);
 
+        GameObject newg = Instantiate(PhysicalStampPrefab,this.transform);
+        newg.transform.position = new Vector3(4f, 1f, -2.5f);
 
         myScrapbook.AddStamp(randy1, randy2);
     }

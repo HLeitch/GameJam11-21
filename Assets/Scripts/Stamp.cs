@@ -13,15 +13,18 @@ public class Stamp : MonoBehaviour
     public GameObject _cornerBone;
     public Vector3 _originalCornerPosition;
     public Transform corner;
+    Rigidbody _mRB;
 
     public float distanceToRotationRatio = 0.1f;
     private Vector3 _originalBoneRotation;
 
-    public float minTimeAllowed;
-    float timeAllowed = 1.0f;
+    public float minTimeAllowed = 1.5f;
+    float timeAllowed = 3.0f;
     float timeTaken = 0.0f;
+    bool scored = false;
 
     ScrapbookFiller _mScrapbook;
+    public CreateStamp cS;
 
 
     // Start is called before the first frame update
@@ -31,6 +34,8 @@ public class Stamp : MonoBehaviour
 
         _originalBoneRotation = _cornerBone.transform.rotation.eulerAngles;
         _mScrapbook = FindObjectOfType<ScrapbookFiller>();
+        cS = FindObjectOfType<CreateStamp>();
+        _mRB = GetComponentInChildren<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -68,30 +73,50 @@ public class Stamp : MonoBehaviour
     }
     public void DeformRightCorner(float DiffInDistance)
     {
-        float diffInDesiredAndCurrentZrotation = (DiffInDistance * distanceToRotationRatio);
-
-        if (diffInDesiredAndCurrentZrotation < 0.3) { diffInDesiredAndCurrentZrotation = 0; }
-
-        _cornerBone.transform.Rotate(0, 0, -diffInDesiredAndCurrentZrotation);
-
-        timeTaken += Time.deltaTime;
-        if (_cornerBone.transform.rotation.z > 180)
+        if (scored == false)
         {
-            if (timeTaken > timeAllowed || timeTaken < minTimeAllowed)
+            float diffInDesiredAndCurrentZrotation = (DiffInDistance * distanceToRotationRatio);
+
+            if (diffInDesiredAndCurrentZrotation < 0.3) { diffInDesiredAndCurrentZrotation = 0; }
+
+            _cornerBone.transform.Rotate(0, 0, -diffInDesiredAndCurrentZrotation);
+
+            timeTaken += Time.deltaTime;
+
+            if (_cornerBone.transform.rotation.z < -0.6)
             {
-                //fail
 
-                _mScrapbook.UpdateScore(0);
-                Death();
+                if (timeTaken > timeAllowed || timeTaken < minTimeAllowed)
+                {
+                    //fail
+                    scored = true;
+
+                    _mScrapbook.UpdateScore(0);
+                    Debug.Log("Fail");
+                    _mRB.useGravity = true;
+                    Death();
+                }
+                else
+                {
+                    scored = true;
+                    _mScrapbook.UpdateScore((int)((timeTaken / timeAllowed) * 100));
+
+                    Debug.Log("Score: " + (int)((timeTaken / timeAllowed)));
+                    _mRB.useGravity = true;
+                    Death();
+                }
+
             }
-
         }
     }
 
     IEnumerator Death()
     {
+        _peelingCorner.active = false;
         yield return new WaitForSeconds(3.0f);
+        cS.SpawnStamp();
         Destroy(this.gameObject);
+
 
     }
 }

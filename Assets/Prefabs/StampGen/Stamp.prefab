@@ -44,3 +44,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newMat: {fileID: 2100000, guid: bc556e794bedd5349ac73092cacc5053, type: 2}
+  PhysicalStampPrefab: {fileID: 5341888177881108486, guid: fe1b949fb2700fe4ea098aab1e0ed01a, type: 3}

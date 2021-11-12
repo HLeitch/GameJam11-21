@@ -7,6 +7,7 @@ public class Peelable : MonoBehaviour
     BoxCollider2D _mCollider;
     Camera _mCamera;
     public Stamp _mStamp;
+    public bool active = true;
 
     // Start is called before the first frame update
     void Start()
@@ -28,12 +29,15 @@ public class Peelable : MonoBehaviour
     }
     private void OnMouseDrag()
     {
-        //Move collider to mouse position
-        Vector3 worldMousePos = _mCamera.ScreenToWorldPoint(Input.mousePosition);
-        worldMousePos = new Vector3(worldMousePos.x, worldMousePos.y, 1f);
-        _mCollider.gameObject.transform.position = worldMousePos;
+        if (active)
+        {
+            //Move collider to mouse position
+            Vector3 worldMousePos = _mCamera.ScreenToWorldPoint(Input.mousePosition);
+            worldMousePos = new Vector3(worldMousePos.x, worldMousePos.y, 1f);
+            _mCollider.gameObject.transform.position = worldMousePos;
 
-        _mStamp.MoveEdge(worldMousePos);
+            _mStamp.MoveEdge(worldMousePos);
+        }
     }
 
 
