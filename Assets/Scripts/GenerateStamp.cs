@@ -27,10 +27,12 @@ public class GenerateStamp : MonoBehaviour
         int randy1 = Random.Range(0, 10);
         int randy2 = Random.Range(0, 10);
 
-        back = Instantiate(mommyStamp.backingStamps[randy1], transform.position, Quaternion.identity);
+        /*back = Instantiate(mommyStamp.backingStamps[randy1], transform.position, Quaternion.identity);
         back.transform.parent = gameObject.transform;
 
         front = Instantiate(mommyStamp.imageStamps[randy2], transform.position, Quaternion.identity);
-        front.transform.parent = gameObject.transform;
+        front.transform.parent = gameObject.transform;*/
+
+        myScrapbook.AddStamp(randy1, randy2);
     }
 }
