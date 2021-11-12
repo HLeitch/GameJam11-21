@@ -8,11 +8,15 @@ public class GenerateStamp : MonoBehaviour
     GameObject back;
     GameObject front;
     ScrapbookFiller myScrapbook;
+    SpriteCombine myCombiner;
+    Sprite mergedImage;
+    public Material newMat;
     // Start is called before the first frame update
     void Start()
     {
         mommyStamp = FindObjectOfType<CreateStamp>();
         myScrapbook = FindObjectOfType<ScrapbookFiller>();
+        myCombiner = FindObjectOfType<SpriteCombine>();
         GenerateImages();
     }
 
@@ -27,11 +31,9 @@ public class GenerateStamp : MonoBehaviour
         int randy1 = Random.Range(0, 10);
         int randy2 = Random.Range(0, 10);
 
-        /*back = Instantiate(mommyStamp.backingStamps[randy1], transform.position, Quaternion.identity);
-        back.transform.parent = gameObject.transform;
+        mergedImage = myCombiner.Merge(mommyStamp.backingSprites[randy1], mommyStamp.imageSprites[randy2]);
+        newMat.SetTexture("_MainTex",mergedImage.texture);
 
-        front = Instantiate(mommyStamp.imageStamps[randy2], transform.position, Quaternion.identity);
-        front.transform.parent = gameObject.transform;*/
 
         myScrapbook.AddStamp(randy1, randy2);
     }

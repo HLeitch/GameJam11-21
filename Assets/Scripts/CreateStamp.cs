@@ -6,6 +6,8 @@ public class CreateStamp : MonoBehaviour
 {
     public GameObject[] backingStamps;
     public GameObject[] imageStamps;
+    public Sprite[] backingSprites;
+    public Sprite[] imageSprites;
     public GameObject stamp;
     Vector2 spawnPoint;
     // Start is called before the first frame update
