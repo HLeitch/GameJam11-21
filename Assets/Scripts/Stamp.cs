@@ -11,6 +11,7 @@ public class Stamp : MonoBehaviour
     Stamp_Image _Image;
     private SpriteRenderer _mSpriteRenderer;
     public GameObject _cornerBone;
+    Vector3 originalCornerPosition;
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +19,7 @@ public class Stamp : MonoBehaviour
         _mSpriteRenderer = GetComponent<SpriteRenderer>();
         _Image = GetComponentInChildren<Stamp_Image>();
         _mSpriteRenderer.sprite = _Background;
+        originalCornerPosition = _cornerBone.transform.position;
     }
 
     // Update is called once per frame
@@ -29,7 +31,10 @@ public class Stamp : MonoBehaviour
     //Moves the top left corner of the stamp
     public void MoveEdge(Vector3 newPosition)
     {
-        DeformRightCorner(newPosition);
+        if((originalCornerPosition-Vector3.zero).magnitude > (newPosition-Vector3.zero).magnitude)
+                {
+            DeformRightCorner(newPosition);
+        }
         //gameObject.transform.position = newPosition;
     }
 
