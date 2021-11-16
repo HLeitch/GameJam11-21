@@ -20,11 +20,13 @@ public class Stamp : MonoBehaviour
 
     public float minTimeAllowed = 1.5f;
     float timeAllowed = 3.0f;
-    float timeTaken = 0.0f;
+    public float timeTaken = 0.0f;
     bool scored = false;
 
     ScrapbookFiller _mScrapbook;
     public CreateStamp cS;
+    public GameObject timerObject;
+    public GameObject timer;
 
 
     // Start is called before the first frame update
@@ -36,6 +38,7 @@ public class Stamp : MonoBehaviour
         _mScrapbook = FindObjectOfType<ScrapbookFiller>();
         cS = FindObjectOfType<CreateStamp>();
         _mRB = GetComponentInChildren<Rigidbody>();
+        timer = Instantiate(timerObject, new Vector2(transform.position.x - 4, transform.position.y - 4), Quaternion.identity);
     }
 
     // Update is called once per frame
@@ -94,7 +97,7 @@ public class Stamp : MonoBehaviour
                     _mScrapbook.UpdateScore(0);
                     Debug.Log("Fail");
                     _mRB.useGravity = true;
-                    Death();
+                    StartCoroutine(Death());
                 }
                 else
                 {
@@ -103,7 +106,7 @@ public class Stamp : MonoBehaviour
 
                     Debug.Log("Score: " + (int)((timeTaken / timeAllowed)));
                     _mRB.useGravity = true;
-                    Death();
+                    StartCoroutine(Death());
                 }
 
             }
@@ -112,9 +115,11 @@ public class Stamp : MonoBehaviour
 
     IEnumerator Death()
     {
+        Debug.Log("IN DEATH");
         _peelingCorner.active = false;
+        Destroy(timer);
         yield return new WaitForSeconds(3.0f);
-        cS.SpawnStamp();
+        //cS.SpawnStamp();
         Destroy(this.gameObject);
 
 

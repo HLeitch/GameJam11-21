@@ -9,6 +9,7 @@ public class CreateStamp : MonoBehaviour
     public Sprite[] backingSprites;
     public Sprite[] imageSprites;
     public GameObject stamp;
+    public GameObject scrapbook;
     Vector2 spawnPoint;
     // Start is called before the first frame update
     void Start()
@@ -20,18 +21,22 @@ public class CreateStamp : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            Vector2 newSpawn;
-            newSpawn.x = spawnPoint.x + 2;
-            newSpawn.y = spawnPoint.y;
-            spawnPoint = newSpawn;
-            SpawnStamp();
-        }
+        //if(Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    Vector2 newSpawn;
+        //    newSpawn.x = scrapbook.transform.position.x;
+        //    newSpawn.y = scrapbook.transform.position.y;
+        //    spawnPoint = newSpawn;
+        //    SpawnStamp();
+        //}
     }
 
     public void SpawnStamp()
     {
+        Vector2 newSpawn;
+        newSpawn.x = scrapbook.transform.position.x;
+        newSpawn.y = scrapbook.transform.position.y;
+        spawnPoint = newSpawn;
         var newStamp = Instantiate(stamp, spawnPoint, Quaternion.identity);
     }
 }

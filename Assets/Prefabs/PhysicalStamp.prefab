@@ -61,6 +61,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mStamp: {fileID: 614069955369412465}
+  active: 1
 --- !u!61 &614069955368855453
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -140,6 +141,9 @@ MonoBehaviour:
   corner: {fileID: 614069955368855451}
   distanceToRotationRatio: 0.2
   minTimeAllowed: 0
+  timeTaken: 0
+  cS: {fileID: 0}
+  timerObject: {fileID: 2713209606850664092, guid: 6b23a43ac6d6a994abdadefaf9ba16a3, type: 3}
 --- !u!54 &6342562001039560958
 Rigidbody:
   m_ObjectHideFlags: 0
