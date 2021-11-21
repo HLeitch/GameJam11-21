@@ -13,7 +13,7 @@ public class Stamp : MonoBehaviour
     public GameObject _cornerBone;
     public Vector3 _originalCornerPosition;
     public Transform corner;
-    Rigidbody _mRB;
+    public Rigidbody _mRB;
 
     public float distanceToRotationRatio = 0.1f;
     private Vector3 _originalBoneRotation;
